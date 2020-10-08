@@ -1,0 +1,177 @@
+.App {
+    text-align: center;
+}
+
+.App-header {
+    background-color: #282c34;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+}
+
+.loading {
+
+
+}
+
+
+/*/////////////////////////*/
+
+.box-match {
+    margin: 10px auto;
+    width: 98%;
+    border: solid 1px #ccc;
+    height: 200px;
+}
+
+.team-left {
+    float: left;
+    width: 35%;
+    border: solid 1px #000066;
+    margin-top: 10px;
+    margin-right: 1%;
+    margin-left: 1%;
+}
+
+.score-team-a {
+    font-size: 35px;
+    float: right;
+    margin: 0 20px 0 0;
+}
+
+.mid-match {
+    float: left;
+    width: 26%;
+    border: solid 1px red;
+    margin-top: 10px;
+}
+
+.team-right {
+    float: left;
+    width: 35%;
+    border: solid 1px #000066;
+    margin-top: 10px;
+    margin-left: 1%;
+}
+
+.score-team-z {
+    font-size: 35px;
+    float: left;
+    margin: 0 0 0 20px;
+}
+
+.team-flag {
+    width: 70px;
+    height: 70px;
+}
+
+.menu-link {
+    padding: 10px;
+    margin: 0 5px;
+    border: solid 1px #2E72B7;
+    border-radius: 5px;
+    background-color: #2E72B7;
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.menu-link:hover {
+    background-color: #1346b7;
+}
+
+.top-menu {
+    margin: 20px auto;
+}
+
+#form {
+    border: solid 1px #ccc;
+    width: 60%;
+    margin: 0 auto;
+    padding: 10px 0;
+}
+
+#form > div {
+    margin: 10px 0;
+}
+
+#form > div > label {
+    font-weight: bold;
+    margin-right: 20px;
+}
+
+#form > div > input, #form > div > select {
+    padding: 5px;
+}
+
+#form > button {
+    padding: 10px;
+    background-color: #2E72B7;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+}
+
+.box-team {
+    margin: 10px auto;
+    width: 60%;
+    border: solid 1px #ccc;
+    height: 90px;
+}
+
+.team-flag-icon {
+    float: left;
+    margin: 10px 50px;
+}
+
+.team-name a {
+    font-weight: bold;
+    font-size: 23px;
+    float: left;
+    margin-top: 25px;
+    text-decoration: none;
+    color: #000;
+}
+
+.team-actions {
+    float: right;
+    margin: 35px 35px 0 0;
+}
+
+.link-edit {
+    padding: 10px;
+    margin: 10px 5px;
+    border-radius: 5px;
+    background-color: #ffc107;
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.link-edit:hover {
+    background-color: #e0a800;
+}
+
+.link-delete {
+    padding: 10px;
+    margin: 10px 5px;
+    border-radius: 5px;
+    background-color: #dc3545;
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.link-delete:hover {
+    background-color: #c82333;
+}
+
+.match-actions {
+    float: right;
+    margin: 15px 10px 0 0;
+}
