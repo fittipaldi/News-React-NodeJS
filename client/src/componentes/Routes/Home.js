@@ -1,6 +1,9 @@
 import React, {useEffect, useState} from 'react';
+import {Grid, Row} from 'react-flexbox-grid';
 import {ServerApi} from '../../utils';
-import ReactCountryFlag from 'react-country-flag';
+import BoxCountry from '../Modules/BoxCountry';
+import Header from '../Modules/Header';
+import Loading from '../Modules/Loading';
 
 const Home = (props) => {
 
@@ -20,17 +23,17 @@ const Home = (props) => {
                     await setState({...state, isLoading: false, message: '', items: resp.data.data});
                 } else {
                     await setState({...state, isLoading: false, message: resp.msg, items: []});
-                    alert(resp.msg);
+                    console.log(resp.msg);
                 }
             }).catch(async (err) => {
                 const msg = (typeof err.message != 'undefined') ? err.message : err;
                 await setState({...state, isLoading: false, message: msg, items: []});
-                alert(msg);
+                console.log(msg);
             });
         } catch (err) {
             const msg = (typeof err.message != 'undefined') ? err.message : err;
             await setState({...state, isLoading: false, message: msg, items: []});
-            alert(msg);
+            console.log(msg);
         }
     };
 
@@ -40,21 +43,21 @@ const Home = (props) => {
 
     return (
         <div className="App">
-            <div className="list-team">
-                {Object.keys(items).map(i => (
-                    <div className="box-team" key={i}>
-                        <div className="team-flag-icon">
-                            <ReactCountryFlag countryCode={items[i].country_code} svg style={{
-                                width: '50px',
-                                height: '40px',
-                            }}/>
-                        </div>
-                        <div className="team-name">
-                            <a href={'/news/' + items[i].country_code}>{items[i].country_name}</a>
-                        </div>
-                    </div>
-                ))}
-            </div>
+
+            <Header/>
+
+            {(isLoading) && <Loading/>}
+
+            <h1>Headlines Per Country</h1>
+
+            <Grid fluid>
+                <Row>
+                    {Object.keys(items).map(i => (
+                        <BoxCountry data={items[i]} key={i}/>
+                    ))}
+                </Row>
+            </Grid>
+
         </div>
     )
 };

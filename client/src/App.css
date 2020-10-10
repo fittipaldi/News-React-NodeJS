@@ -13,165 +13,168 @@
     color: white;
 }
 
+.clear-fix {
+    clear: both;
+}
+
+/* Header */
+.header {
+    width: 100%;
+    height: 30px;
+    background-color: #1B0F1C;
+}
+
+.header-logo {
+    margin-top: 3px;
+}
+
+
 .loading {
-
-
+    height: 2vw;
+    width: 100%;
+    background: linear-gradient(100deg, #c7c5c3, #5f5f5f, #c7c5c3);
+    background-size: 200% 200%;
+    -webkit-animation: Animation 5s ease infinite;
+    -moz-animation: Animation 5s ease infinite;
+    animation: Animation 5s ease infinite;
 }
 
-
-/*/////////////////////////*/
-
-.box-match {
-    margin: 10px auto;
-    width: 98%;
-    border: solid 1px #ccc;
-    height: 200px;
+@-webkit-keyframes Animation {
+    0% {
+        background-position: 10% 0%
+    }
+    50% {
+        background-position: 91% 100%
+    }
+    100% {
+        background-position: 10% 0%
+    }
 }
 
-.team-left {
-    float: left;
-    width: 35%;
-    border: solid 1px #000066;
-    margin-top: 10px;
-    margin-right: 1%;
-    margin-left: 1%;
+@-moz-keyframes Animation {
+    0% {
+        background-position: 10% 0%
+    }
+    50% {
+        background-position: 91% 100%
+    }
+    100% {
+        background-position: 10% 0%
+    }
 }
 
-.score-team-a {
-    font-size: 35px;
-    float: right;
-    margin: 0 20px 0 0;
+@keyframes Animation {
+    0% {
+        background-position: 10% 0%
+    }
+    50% {
+        background-position: 91% 100%
+    }
+    100% {
+        background-position: 10% 0%
+    }
 }
 
-.mid-match {
-    float: left;
-    width: 26%;
-    border: solid 1px red;
-    margin-top: 10px;
-}
+/* !Header */
 
-.team-right {
-    float: left;
-    width: 35%;
-    border: solid 1px #000066;
-    margin-top: 10px;
-    margin-left: 1%;
-}
 
-.score-team-z {
-    font-size: 35px;
-    float: left;
-    margin: 0 0 0 20px;
-}
-
-.team-flag {
-    width: 70px;
-    height: 70px;
-}
-
-.menu-link {
-    padding: 10px;
-    margin: 0 5px;
-    border: solid 1px #2E72B7;
+/* Box Country */
+.box-country {
+    width: 100%;
+    border: 1px solid #ccc;
     border-radius: 5px;
-    background-color: #2E72B7;
-    color: #fff;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-.menu-link:hover {
-    background-color: #1346b7;
-}
-
-.top-menu {
-    margin: 20px auto;
-}
-
-#form {
-    border: solid 1px #ccc;
-    width: 60%;
-    margin: 0 auto;
+    margin: 5px 0;
     padding: 10px 0;
+    text-decoration: none;
+    display: block;
+    background-color: #ddd;
+    opacity: 0.7;
+    transition: 0.5s;
 }
 
-#form > div {
-    margin: 10px 0;
+.box-country:hover {
+    opacity: 1;
 }
 
-#form > div > label {
-    font-weight: bold;
-    margin-right: 20px;
+.box-country p {
+    color: #000;
+    font-size: 16px;
 }
 
-#form > div > input, #form > div > select {
-    padding: 5px;
+.country-flag {
+    width: 15vw !important;
+    height: 10vw !important;
 }
 
-#form > button {
-    padding: 10px;
-    background-color: #2E72B7;
-    color: #fff;
-    border: none;
+/* !Box Country */
+
+
+/* Box News */
+.row-news {
+    display: table;
+    width: 100%;
+}
+
+.col-news {
+    display: table-cell;
+    margin-bottom: 15px;
+}
+
+.box-news {
+    width: 100%;
+    border: 1px solid #ccc;
     border-radius: 5px;
-}
-
-.box-team {
-    margin: 10px auto;
-    width: 60%;
-    border: solid 1px #ccc;
-    height: 90px;
-}
-
-.team-flag-icon {
-    float: left;
-    margin: 10px 50px;
-}
-
-.team-name a {
-    font-weight: bold;
-    font-size: 23px;
-    float: left;
-    margin-top: 25px;
+    display: block;
     text-decoration: none;
     color: #000;
+    opacity: 0.7;
+    transition: 0.5s;
 }
 
-.team-actions {
+.box-news:hover {
+    opacity: 1;
+}
+
+.news-img {
+    width: 25vw;
+}
+
+.date-news {
     float: right;
-    margin: 35px 35px 0 0;
+    margin-right: 20px;
+    font-size: 14px;
 }
 
-.link-edit {
-    padding: 10px;
-    margin: 10px 5px;
-    border-radius: 5px;
-    background-color: #ffc107;
-    color: #fff;
-    text-decoration: none;
-    font-weight: bold;
+.title-news {
+    font-size: 16px;
+    padding: 10px 15px;
 }
 
-.link-edit:hover {
-    background-color: #e0a800;
+.description-news {
+    padding: 10px 15px;
+    display: block;
 }
 
-.link-delete {
-    padding: 10px;
-    margin: 10px 5px;
-    border-radius: 5px;
-    background-color: #dc3545;
-    color: #fff;
-    text-decoration: none;
-    font-weight: bold;
-    cursor: pointer;
+.author-news {
+    float: left;
+    margin-left: 10px;
+    font-size: 14px;
+    font-weight: 600;
 }
 
-.link-delete:hover {
-    background-color: #c82333;
-}
+/* !Box News */
 
-.match-actions {
-    float: right;
-    margin: 15px 10px 0 0;
+@media (max-width: 599px) {
+    .loading {
+        height: 4vw;
+    }
+
+    .country-flag {
+        width: 25vw !important;
+        height: 20vw !important;
+    }
+
+    .news-img {
+        width: 40vw;
+    }
 }

@@ -20,6 +20,8 @@ const NewsController = {
                         break;
                     }
                 }
+            } else if (typeof news.message !== 'undefined') {
+                throw news.message;
             }
         }
 

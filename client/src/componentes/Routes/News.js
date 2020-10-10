@@ -1,7 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import {useParams} from 'react-router-dom';
-import {ServerApi} from "../../utils";
-import Moment from 'moment';
+import {ServerApi} from '../../utils';
+import {Grid, Row} from 'react-flexbox-grid';
+import BoxNews from '../Modules/BoxNews';
+import Header from '../Modules/Header';
+import Loading from '../Modules/Loading';
+import NotFound from './NotFound';
 
 const News = (props) => {
 
@@ -10,31 +14,54 @@ const News = (props) => {
     const [state, setState] = useState({
         items: [],
         isLoading: false,
+        isNotFound: false,
         message: '',
-        country_code: ''
+        country_code: '',
+        country_name: '',
     });
 
-    const {items, isLoading, message, country_code} = state;
+    const {items, isLoading, isNotFound, message, country_code, country_name} = state;
 
     const handleLoadNews = async (code) => {
         try {
-            await setState({...state, isLoading: true, country_code: code, items: []});
+            await setState({...state, isLoading: true, country_code: code, items: [], country_name: ''});
             ServerApi.getCountryNews(code).then(async (resp) => {
                 if (resp.data.status) {
-                    await setState({...state, isLoading: false, message: '', items: resp.data.data});
+                    await setState({
+                        ...state,
+                        isLoading: false,
+                        message: '',
+                        items: resp.data.data.items,
+                        country_code: resp.data.data.country.country_code,
+                        country_name: resp.data.data.country.country_name,
+                    });
                 } else {
-                    await setState({...state, isLoading: false, message: resp.msg, items: []});
-                    alert(resp.msg);
+                    await setState({
+                        ...state,
+                        isLoading: false,
+                        message: resp.msg,
+                        items: [],
+                        country_name: '',
+                        isNotFound: true
+                    });
+                    console.log(resp.msg);
                 }
             }).catch(async (err) => {
                 const msg = (typeof err.message != 'undefined') ? err.message : err;
-                await setState({...state, isLoading: false, message: msg, items: []});
-                alert(msg);
+                await setState({
+                    ...state,
+                    isLoading: false,
+                    message: msg,
+                    items: [],
+                    country_name: '',
+                    isNotFound: true
+                });
+                console.log(msg);
             });
         } catch (err) {
             const msg = (typeof err.message != 'undefined') ? err.message : err;
-            await setState({...state, isLoading: false, message: msg, items: []});
-            alert(msg);
+            await setState({...state, isLoading: false, message: msg, items: [], country_name: '', isNotFound: true});
+            console.log(msg);
         }
     };
 
@@ -45,22 +72,25 @@ const News = (props) => {
     return (
         <div className="App">
 
-            {Object.keys(items).map(i => (
-                <div className="box-team" key={i}>
-                    <div className="team-flag-icon">
-                        <img src={items[i].urlToImage} style={{
-                            width: '100px'
-                        }}></img>
-                    </div>
-                    <div className="team-name">
-                        <a href={items[i].url}>{items[i].title}</a>
-                    </div>
+            {(!isNotFound) ?
+                <div>
+                    <Header/>
 
-                    {(items[i].author) && <div>By {items[i].author}</div>}
-                    <div>{items[i].description}</div>
-                    <div>{Moment(items[i].publishedAt).format('DD/MM/YYYY hh:mm')}</div>
+                    {(isLoading) && <Loading/>}
+
+                    <h1>{(country_name) && `${country_name}'s Headlines`}</h1>
+
+                    <Grid fluid>
+                        <Row className="row-news">
+                            {Object.keys(items).map(i => (
+                                <BoxNews data={items[i]} key={i}/>
+                            ))}
+                        </Row>
+                    </Grid>
                 </div>
-            ))}
+                :
+                <NotFound/>
+            }
 
         </div>
     )
