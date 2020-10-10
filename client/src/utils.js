@@ -36,4 +36,15 @@ export class ServerApi extends React.Component {
         return list;
     }
 
+    static async getCountriesNews(codes) {
+        const list = await axios({
+            method: 'get',
+            url: this.getServerHost() + '/news/countries/' + encodeURI(codes.join(',')),
+            headers: {
+                'Authorization': 'Bearer ' + this.getToken()
+            }
+        });
+        return list;
+    }
+
 }

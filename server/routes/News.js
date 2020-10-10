@@ -74,4 +74,23 @@ router.get('/country/:code/:limit', bearerAuth, async (req, res) => {
     }
 });
 
+router.get('/countries/:codes', bearerAuth, async (req, res) => {
+    try {
+        const codes = req.params.codes;
+        const items = await NewsController.getNewsByCountries(codes);
+        return res.json({
+            status: true,
+            msg: 'Success',
+            data: items
+        });
+    } catch (err) {
+        const msg = (typeof err.message != 'undefined') ? err.message : err;
+        return res.status(500).json({
+            status: false,
+            msg: msg,
+            data: null
+        });
+    }
+});
+
 module.exports = router;

@@ -8,6 +8,8 @@ const Header = (props) => {
             <a href="/" title="Go to Home">
                 <img className="header-logo" src={process.env.PUBLIC_URL + '/bbc-white.svg'}></img>
             </a>
+
+            <a className="menu-item" href="/countries">By Country</a>
         </div>
     );
 };

@@ -15,6 +15,7 @@ const NewsController = {
             if (news.status === 'ok') {
                 let loop = 1;
                 for (let article of news.articles) {
+                    article.countryCode = code;
                     limitedNews.push(article);
                     if (limit < ++loop) {
                         break;
@@ -27,6 +28,17 @@ const NewsController = {
 
         return limitedNews;
     },
+
+    getNewsByCountries: async (codes) => {
+        const codesArr = codes.toLowerCase().split(',');
+        let news = [];
+        for (let code of codesArr) {
+            const newsC = await NewsController.getNewsByCountry(code, 5);
+            news = news.concat(newsC);
+        }
+
+        return news;
+    }
 
 };
 
