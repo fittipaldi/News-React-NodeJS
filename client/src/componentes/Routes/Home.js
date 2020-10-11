@@ -24,7 +24,7 @@ const Home = (props) => {
     const handleLoadNewsCountries = async () => {
         try {
             if (choose_countries.length > 0) {
-                await setState({...state, isLoading: true, news: []});
+                await setState({...state, isLoading: true});
                 ServerApi.getCountriesNews(choose_countries).then(async (resp) => {
                     if (resp.data.status) {
                         await setState({
@@ -106,60 +106,64 @@ const Home = (props) => {
 
             <Header/>
 
-            {(isLoading) && <Loading/>}
+            <div className="content-site">
 
-            <Grid fluid>
-                <Row>
-                    <Col xs={12} sm={12} md={12} lg={12}>
-                        {Object.keys(countries).map(i => (
-                            <FormControlLabel
-                                key={i}
-                                control={
-                                    <Checkbox
-                                        checked={(choose_countries.includes(countries[i].country_code))}
-                                        onChange={handleChooseCountries}
-                                        name="countries"
-                                        color="primary"
-                                        value={countries[i].country_code}
-                                    />
-                                }
-                                label={
-                                    <ReactCountryFlag title={countries[i].country_name}
-                                                      className="country-flag-check"
-                                                      countryCode={countries[i].country_code}
-                                                      svg/>
-                                }
-                                title={countries[i].country_name}
-                            />
+                {(isLoading) && <Loading/>}
+
+                <Grid fluid>
+                    <Row>
+                        <Col xs={12} sm={12} md={12} lg={12}>
+                            {Object.keys(countries).map(i => (
+                                <FormControlLabel
+                                    key={i}
+                                    control={
+                                        <Checkbox
+                                            checked={(choose_countries.includes(countries[i].country_code))}
+                                            onChange={handleChooseCountries}
+                                            name="countries"
+                                            color="primary"
+                                            value={countries[i].country_code}
+                                        />
+                                    }
+                                    label={
+                                        <ReactCountryFlag title={countries[i].country_name}
+                                                          className="country-flag-check"
+                                                          countryCode={countries[i].country_code}
+                                                          svg/>
+                                    }
+                                    title={countries[i].country_name}
+                                />
+                            ))}
+                        </Col>
+                    </Row>
+                </Grid>
+                <div className="clear-fix"></div>
+
+                <Grid fluid>
+                    <Row>
+                        <Col xs={12} sm={12} md={12} lg={12}>
+                            <hr></hr>
+                        </Col>
+                    </Row>
+                </Grid>
+
+                {(news.length > 0) &&
+                <Grid fluid>
+                    <Row className="row-news">
+                        {Object.keys(news).map(i => (
+                            <BoxNews data={news[i]} key={i}/>
                         ))}
-                    </Col>
-                </Row>
-            </Grid>
-            <div className="clear-fix"></div>
+                    </Row>
+                </Grid>
+                }
 
-            <Grid fluid>
-                <Row>
-                    <Col xs={12} sm={12} md={12} lg={12}>
-                        <hr></hr>
-                    </Col>
-                </Row>
-            </Grid>
+                {(news.length <= 0 && choose_countries.length <= 0) &&
+                <div>
+                    <h3>Please Choose at least one country to see the last Headlines</h3>
+                </div>
+                }
 
-            {(news.length > 0) &&
-            <Grid fluid>
-                <Row className="row-news">
-                    {Object.keys(news).map(i => (
-                        <BoxNews data={news[i]} key={i}/>
-                    ))}
-                </Row>
-            </Grid>
-            }
-
-            {(news.length <= 0 && choose_countries.length <= 0) &&
-            <div>
-                <h3>Please Choose at least one country to see the last Headlines</h3>
             </div>
-            }
 
             <Footer/>
 

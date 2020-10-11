@@ -4,6 +4,7 @@ import {ServerApi} from '../../utils';
 import BoxCountry from '../Modules/BoxCountry';
 import Header from '../Modules/Header';
 import Loading from '../Modules/Loading';
+import Footer from '../Modules/Footer';
 
 const Countries = (props) => {
 
@@ -46,17 +47,22 @@ const Countries = (props) => {
 
             <Header/>
 
-            {(isLoading) && <Loading/>}
+            <div className="content-site">
 
-            <h1>Headlines by Country</h1>
+                {(isLoading) && <Loading/>}
 
-            <Grid fluid>
-                <Row>
-                    {Object.keys(items).map(i => (
-                        <BoxCountry data={items[i]} key={i}/>
-                    ))}
-                </Row>
-            </Grid>
+                <h1>Headlines by Country</h1>
+
+                <Grid fluid>
+                    <Row>
+                        {Object.keys(items).map(i => (
+                            <BoxCountry data={items[i]} key={i}/>
+                        ))}
+                    </Row>
+                </Grid>
+            </div>
+
+            <Footer/>
 
         </div>
     )

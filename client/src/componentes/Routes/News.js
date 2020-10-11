@@ -6,6 +6,7 @@ import BoxNews from '../Modules/BoxNews';
 import Header from '../Modules/Header';
 import Loading from '../Modules/Loading';
 import NotFound from './NotFound';
+import Footer from '../Modules/Footer';
 
 const News = (props) => {
 
@@ -76,22 +77,37 @@ const News = (props) => {
                 <div>
                     <Header/>
 
-                    {(isLoading) && <Loading/>}
+                    <div className="content-site">
 
-                    <h1>{(country_name) && `${country_name}'s Headlines`}</h1>
+                        {(isLoading) && <Loading/>}
 
-                    <Grid fluid>
-                        <Row className="row-news">
-                            {Object.keys(items).map(i => (
-                                <BoxNews data={items[i]} key={i}/>
-                            ))}
-                        </Row>
-                    </Grid>
+                        <h1>{(country_name) && `${country_name}'s Headlines`}</h1>
+
+                        {(items.length > 0) ?
+                            <Grid fluid>
+                                <Row className="row-news">
+                                    {Object.keys(items).map(i => (
+                                        <BoxNews data={items[i]} key={i}/>
+                                    ))}
+                                </Row>
+                            </Grid>
+                            :
+                            <div>
+                                {(!isLoading) &&
+                                <div>
+                                    <h3>No Headlines</h3>
+                                </div>
+                                }
+                            </div>
+                        }
+                    </div>
+
+                    <Footer/>
+
                 </div>
                 :
                 <NotFound/>
             }
-
         </div>
     )
 };
