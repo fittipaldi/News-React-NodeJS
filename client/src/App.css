@@ -120,6 +120,14 @@
     height: 2vw !important;
 }
 
+.country-flag-news {
+    width: 2vw !important;
+    height: 1.5vw !important;
+    float: right;
+    margin-right: 5px;
+    padding-bottom: 3px;
+}
+
 /* !Box Country */
 
 

@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import Moment from 'moment';
 import {Col} from 'react-flexbox-grid';
+import ReactCountryFlag from "react-country-flag";
 
 const BoxNews = (props) => {
     const {data} = props;
@@ -18,6 +19,9 @@ const BoxNews = (props) => {
                 <div className="description-news">{data.description}</div>
                 <div className="clear-fix"></div>
                 {(data.author) && <div className="author-news">Author: {data.author}</div>}
+                {(data.countryCode) && <ReactCountryFlag className="country-flag-news"
+                                                         countryCode={data.countryCode}
+                                                         svg/>}
                 <div className="clear-fix"></div>
             </a>
         </Col>

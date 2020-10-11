@@ -7,6 +7,7 @@ const NewsController = {
 
         const news = await newsApi.v2.topHeadlines({
             country: code.toLowerCase(),
+            language: 'en'
         });
 
         const limitedNews = [];
@@ -34,8 +35,23 @@ const NewsController = {
         let news = [];
         for (let code of codesArr) {
             const newsC = await NewsController.getNewsByCountry(code, 5);
-            news = news.concat(newsC);
+            if (newsC.length > 0) {
+                news = news.concat(newsC);
+            }
         }
+
+        //Order by the newest
+        news.sort((a, b) => {
+            const dA = new Date(a.publishedAt);
+            const dB = new Date(b.publishedAt);
+            if (dA < dB) {
+                return 1;
+            }
+            if (dA > dB) {
+                return -1;
+            }
+            return 0;
+        });
 
         return news;
     }
