@@ -18,10 +18,12 @@ const BoxNews = (props) => {
                 <div className="clear-fix"></div>
                 <div className="description-news">{data.description}</div>
                 <div className="clear-fix"></div>
-                {(data.author) && <div className="author-news">Author: {data.author}</div>}
-                {(data.countryCode) && <ReactCountryFlag className="country-flag-news"
-                                                         countryCode={data.countryCode}
-                                                         svg/>}
+                <div className="news-footer">
+                    {(data.author) && <div className="author-news">Author: {data.author}</div>}
+                    {(data.countryCode) && <ReactCountryFlag className="country-flag-news"
+                                                             countryCode={data.countryCode}
+                                                             svg/>}
+                </div>
                 <div className="clear-fix"></div>
             </a>
         </Col>

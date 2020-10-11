@@ -10,11 +10,11 @@ const NotFound = (props) => {
 
             <Header/>
 
-            <div className="container">
+            <div className="content-site">
                 <Grid fluid>
                     <Row>
                         <Col xs={12} sm={12} md={12} lg={12}>
-                            <div>
+                            <div className="not-found">
                                 <h1>404: Page Not Found</h1>
                             </div>
                         </Col>
