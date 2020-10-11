@@ -6,7 +6,7 @@ const bearerStrategy = new BearerStrategy(async (token, done) => {
         const auth = await Token.findOne({
             where: {
                 token: token,
-                status: 1
+                status: '1'
             }
         });
 

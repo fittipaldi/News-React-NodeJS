@@ -1,15 +1,13 @@
 import React, {useEffect, useState} from 'react';
 import {Col, Grid, Row} from 'react-flexbox-grid';
 import {ServerApi} from '../../utils';
-import BoxCountry from '../Modules/BoxCountry';
 import Header from '../Modules/Header';
 import Loading from '../Modules/Loading';
-
-
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
-import ReactCountryFlag from "react-country-flag";
-import BoxNews from "../Modules/BoxNews";
+import ReactCountryFlag from 'react-country-flag';
+import BoxNews from '../Modules/BoxNews';
+import Footer from '../Modules/Footer';
 
 const Home = (props) => {
 
@@ -25,29 +23,33 @@ const Home = (props) => {
 
     const handleLoadNewsCountries = async () => {
         try {
-            await setState({...state, isLoading: true, news: []});
-            ServerApi.getCountriesNews(choose_countries).then(async (resp) => {
-                if (resp.data.status) {
-                    await setState({
-                        ...state,
-                        isLoading: false,
-                        message: '',
-                        news: resp.data.data,
-                    });
-                } else {
-                    await setState({
-                        ...state,
-                        isLoading: false,
-                        message: resp.msg,
-                        news: [],
-                    });
-                    console.log(resp.msg);
-                }
-            }).catch(async (err) => {
-                const msg = (typeof err.message != 'undefined') ? err.message : err;
-                await setState({...state, isLoading: false, message: msg, news: []});
-                console.log(msg);
-            });
+            if (choose_countries.length > 0) {
+                await setState({...state, isLoading: true, news: []});
+                ServerApi.getCountriesNews(choose_countries).then(async (resp) => {
+                    if (resp.data.status) {
+                        await setState({
+                            ...state,
+                            isLoading: false,
+                            message: '',
+                            news: resp.data.data,
+                        });
+                    } else {
+                        await setState({
+                            ...state,
+                            isLoading: false,
+                            message: resp.msg,
+                            news: [],
+                        });
+                        console.log(resp.msg);
+                    }
+                }).catch(async (err) => {
+                    const msg = (typeof err.message != 'undefined') ? err.message : err;
+                    await setState({...state, isLoading: false, message: msg, news: []});
+                    console.log(msg);
+                });
+            } else {
+                await setState({...state, news: []});
+            }
         } catch (err) {
             const msg = (typeof err.message != 'undefined') ? err.message : err;
             await setState({...state, isLoading: false, message: msg, news: []});
@@ -122,7 +124,8 @@ const Home = (props) => {
                                     />
                                 }
                                 label={
-                                    <ReactCountryFlag title={countries[i].country_name} className="country-flag-check"
+                                    <ReactCountryFlag title={countries[i].country_name}
+                                                      className="country-flag-check"
                                                       countryCode={countries[i].country_code}
                                                       svg/>
                                 }
@@ -157,6 +160,8 @@ const Home = (props) => {
                 <h3>Please Choose at least one country to see the last Headlines</h3>
             </div>
             }
+
+            <Footer/>
 
         </div>
     )

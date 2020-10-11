@@ -86,7 +86,6 @@
 
 /* !Header */
 
-
 /* Box Country */
 .box-country {
     width: 100%;
@@ -185,6 +184,18 @@
 }
 
 /* !Box News */
+
+/* Footer */
+.footer {
+    background: #8b0027;
+    min-height: 6rem;
+    width: 100%;
+    bottom: 0;
+    clear: both;
+    margin: 0;
+}
+
+/* !Footer */
 
 @media (max-width: 599px) {
     .loading {

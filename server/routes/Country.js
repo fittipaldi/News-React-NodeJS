@@ -5,7 +5,11 @@ const bearerAuth = passport.authenticate('bearer', {session: false});
 
 router.get('/all', bearerAuth, async (req, res) => {
     try {
-        const countries = await Country.findAll();
+        const countries = await Country.findAll({
+            where: {
+                status: '1'
+            }
+        });
         return res.json({
             status: true,
             msg: 'Success',

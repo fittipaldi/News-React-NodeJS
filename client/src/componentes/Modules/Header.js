@@ -1,8 +1,6 @@
 import React, {useState} from 'react';
 
 const Header = (props) => {
-    const {clicked} = props;
-
     return (
         <div className="header">
             <a href="/" title="Go to Home">
