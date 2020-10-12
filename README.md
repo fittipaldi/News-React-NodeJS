@@ -1,5 +1,22 @@
 # API
 
+### Overview
+   * This project is split in two parts: `server` and `client`
+        * Server
+			- NodeJS Vesion >= 12.16 (Language)
+			- Express (WEB Server)
+			- Sequelize (ORM)
+			- Passport (Authorization check)
+			- This project is using DB MySQL
+			
+		* React
+			- React (Framework)
+			- material-ui
+			- axios (Request)
+			- moment (Datetime)
+			- react-country-flag (Country Flags)	
+			- react-flexbox-grid (Help for the responsive layout)
+			
 ### Installation
    * Import the file `dump.sql` into the MySQL DB
         * Create the Database, please check the collation Encoding `utf8_general_ci` OR `utf8mb4_general_ci`
