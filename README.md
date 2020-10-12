@@ -3,11 +3,11 @@
 ### Overview
    * This project is split in two parts: `server` and `client`
         * Server
-			- NodeJS Vesion >= 12.16 (Language)
+			- NodeJS (Language) Vesion >= 12.16
 			- Express (WEB Server)
 			- Sequelize (ORM)
 			- Passport (Authorization check)
-			- This project is using DB MySQL
+			- This project is using MySQL DB
 			
 		* React
 			- React (Framework)
